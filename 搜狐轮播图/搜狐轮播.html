@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding:0px;
+
+        }
+        .carousel{
+            width: 930px;
+            height: 350px;
+            margin: 50px auto;
+            position: relative;
+            background-color: black;
+        }
+        .carousel ul{
+            list-style: none;
+        }
+        .carousel ul li{
+            width: 930px;
+            height: 350px;
+            overflow:hidden;
+            position: absolute;
+            display:none;
+        }
+        .carousel ul li.no0{
+           
+            display:block;
+        }
+        .carousel ul li img{
+            width: 1120px;
+            height: 350px;
+            position: absolute;
+            left:50%;
+            margin-left: -560px;
+
+        }
+        .carousel .bottom_box{
+            position:absolute;
+            bottom:10px;
+            left:0px;
+            width: 630px;
+            left:50%;
+            margin-left:-319px;
+        }
+        .carousel .leftbtn{
+            float:left;
+            width: 31px;
+            height: 46px;
+            background: url(images/left.jpg);
+            margin-right:19px;
+            margin-top:5px;
+            position:relative;
+            z-index: 9999;
+        }
+        .carousel .leftbtn:hover{
+            background: url(images/left-h.jpg);
+        }
+        .carousel .smallpicbox{
+            list-style: none;
+            float:left;
+            width: 530px;
+            overflow:hidden;
+        }
+        .carousel ol{
+            list-style: none;
+            position:relative;
+            width: 3000px;
+        }
+        
+        .carousel .rightbtn{
+            float:right;
+            width: 31px;
+            height: 46px;
+            background: url(images/right.jpg);
+            margin-top:5px;
+            position:relative;
+           z-index: 9999;
+          
+        }
+        .carousel .rightbtn:hover{
+            background: url(images/right-h.jpg);
+        }
+        .carousel ol li{
+            float:left;
+            width: 90px;
+            height: 45px;
+            padding:7px 2px 2px;
+            margin-right:12px;
+        }
+        .carousel ol li.last{
+            margin-right:0px;
+        }
+        .carousel ol li.cur{
+            background: url(images/kuang.jpg);
+        }
+        .carousel .bottom_mask{
+            position:absolute;
+            bottom:0px;
+            left:0px;
+            width:100%;
+            height: 100px;
+            background: -webkit-linear-gradient(top,rgba(0, 0, 0, 0),#000);
+        }
+    </style>
+</head>
+<body>
+    <div class= "carousel" id="carousel">
+        <ul class="piclist" id="piclist">
+            <li class="no0"><a href="#"><img src="images/11.jpg" ></a></li>
+             <li><a href="#"><img src="images/22.jpg" ></a></li>
+            <li><a href="#"><img src="images/33.jpg" ></a></li>
+            <li><a href="#"><img src="images/44.jpg" ></a></li>
+            <li><a href="#"><img src="images/55.jpg" ></a></li>
+        </ul>
+        <div class="bottom_mask"></div>
+        <div class="bottom_box">
+            <a href="javascript:;" class="leftbtn" id="leftbtn"></a>
+            <div class="smallpicbox" id="smallpicbox">
+        <ol>
+           <li class="cur"><a href=""><img src="images/1.jpg" ></a></li>
+           <li><a href=""><img src="images/2.jpg" ></a></li>
+           <li><a href=""><img src="images/3.jpg" ></a></li>
+           <li><a href=""><img src="images/4.jpg" ></a></li>
+           <li ><a href=""><img src="images/5.jpg" ></a></li>
+        </ol>
+    </div>
+        <a href="javascript:;" class="rightbtn" id="rightbtn"></a>
+        </div>
+        
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+     $('#carousel #smallpicbox ol li').clone().appendTo('#carousel #smallpicbox ol');
+
+     var idx=0;
+     var nowshow =0;
+     var $ol=$('#carousel #smallpicbox ol');
+     var $lis=$('#carousel #piclist li');
+    var $smallpiclis=$('#carousel #smallpicbox ol li');
+     $('#carousel #rightbtn').click(function(){
+        idx++;
+        $ol.animate({'left': -106 *idx },100,function(){
+            if(idx==5){
+                idx=0;
+                $ol.css('left',0);
+            }
+        });
+     });
+
+     $('#carousel #leftbtn').click(function(){
+        idx--;
+        if(idx==-1)
+        {
+            $ol.css('left', -106*5);
+            idx = 4;
+        }
+        $ol.animate({'left': -106 *idx },100);
+     });
+
+     $smallpiclis.mouseenter(function(){
+        rener($(this).index()%5);
+     });
+      function rener(newNowShow){
+        $lis.stop(true).fadeOut(300);
+         nowshow = newNowShow;
+         $lis.eq(nowshow).stop(true).fadeIn(300);
+
+         $smallpiclis.removeClass('cur');
+         $smallpiclis.eq(nowshow).addClass('cur');
+         $smallpiclis.eq(nowshow+5).addClass('cur');
+      }
+      var lock=true;
+
+      $('#carousel').mouseenter(function(){
+          lock = false;
+      });
+     
+      $('#carousel').mouseleave(function(){
+          lock = true;
+      });
+
+     setInterval(function(){
+         if(!lock) return;
+         $('#carousel #rightbtn').trigger('click');
+         
+         rener((nowshow+1)%5);
+     },1000);
+    </script>
+</body>
+</html>
