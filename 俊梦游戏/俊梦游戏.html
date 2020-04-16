@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+       *{
+           margin:0px;
+           padding:0px;
+       }
+       .banner{
+           width: 100%;
+           height: 350px;
+           margin-top: 100px;
+           background-color:rgb(201,163,58);
+           position:relative;
+           transition:all .5s ease 0s;
+       }
+       .banner ul{
+           list-style:none;
+       }
+       .banner ul li{
+        position:absolute;
+        opacity: 0;
+        width:100%;
+        height: 350px;
+       }
+       .banner ul li.no0{
+           position:absolute;
+           left:50%;
+           margin-left:-960px;
+           width:1920px;
+           height: 350px;
+           background: url(images1/bg1.png);
+           opacity: 1;
+           
+       }
+       .banner ul li.no1{
+           background: rgb(201,163,58);
+       }
+       .banner ul li.no1 .bg{
+           position:absolute;
+           left:50%;
+           margin-left:-490px;
+           width: 980px;
+           height: 350px;
+           background: url(images1/bg2.png);
+        
+           
+       }
+       .banner ul li.no2{
+           background: rgb(180,135,78);
+       }
+       .banner ul li.no2 .bg{
+           position:absolute;
+           left:50%;
+           margin-left:-490px;
+           width: 980px;
+           height: 350px;
+           background: url(images1/bg3.jpg);
+         
+       }
+       .banner ol
+       {
+           position:absolute;
+           left:50%;
+           top:140px;
+           width: 30px;
+           height: 200px;
+           list-style:none;
+           margin-left: 400px;
+
+       }
+
+       .banner ol li{
+           width: 20px;
+           height: 20px;
+           background-color: orange;
+           border-radius:50% ;
+           margin-bottom: 10px;
+       }
+       .banner ol li.cur{
+        background-color:red;
+       }
+        .banner .no0 .boy{
+            position:absolute;
+            left:50%;
+            margin-left:-550px;
+            margin-top:-20px;
+            transform:scale(0) rotate(360deg);
+            transition: all 1.5s ease 0s;
+        }
+       .banner .no0.cur .boy{
+           transform:scale(1) rotate(0deg);
+       }
+       .banner .no0 .pangzi{
+            position:absolute;
+            left:50%;
+            margin-left:-270px;
+            margin-top:66px;
+            transform:scale(0) ;
+            transition: all 1.5s ease 0s;
+        }
+       .banner .no0.cur .pangzi{
+           transform:scale(1);
+       }
+       .banner .no0 .xjcs{
+            position:absolute;
+            left:50%;
+            margin-left:10px;
+            margin-top:60px;
+            transform:translateY(-400px);
+            transition: all 1.5s ease .5s;
+            width: 380px;
+           
+        }
+        .banner .no0.cur .xjcs{
+            transform:translateY(0px);
+       }
+       .banner .no1 .ninjia{
+            position:absolute;
+            left:50%;
+            margin-left:-550px;
+            margin-top:-20px;
+            transform:translateX(-1000px);
+            transition: all 1.5s ease 0s;
+        }
+        .banner .no1.cur .ninjia{
+            transform:translateX(0px);
+       }
+       .banner .no1 .pljh{
+            position:absolute;
+            left:50%;
+            margin-left:10px;
+            margin-top:60px;
+            transform:translateY(-400px);
+            transition: all 1.5s ease .5s;
+        }
+        .banner .no1.cur .pljh{
+            transform:translateY(0px);
+       }
+       .banner .no2 .cike{
+            position:absolute;
+            left:50%;
+            margin-left:-610px;
+            margin-top:-30px;
+           
+            transition: all 1s ease .5s;
+            transition: scale(0);
+        }
+        .banner .no2.cur .cike{
+            transform:scale(1);
+       }
+       .banner .no2 .sgzj{
+            position:absolute;
+            left:50%;
+            margin-left:10px;
+            margin-top:60px;
+            transform:translateY(-400px);
+            transition: all 1.5s ease .5s;
+        }
+        .banner .no2.cur .sgzj{
+            transform:translateY(0px);
+       }
+   </style>
+ 
+  </head>
+  <body>
+<div class="banner">
+  <ul>
+      <li class="no0  cur">
+          
+          <img src="images1/bg4.png" class ="boy" alt="">
+          <img src="images1/bg10.png" class ="pangzi" alt="">
+          <img src="images1/bg7.png" class ="xjcs" >
+      </li>
+      <li class="no1">
+        <div class="bg"></div>
+        <img src="images1/bg5.png" class ="ninjia" >
+        <img src="images1/bg8.png" class ="pljh" >
+      </li>
+      <li class="no2">
+        <div class="bg"></div>
+        <img src="images1/bg6.png" class ="cike" >
+        <img src="images1/bg9.png" class ="sgzj" >
+      </li>
+  </ul>
+  <ol>
+  <li class='cur'></li>
+  <li></li>
+  <li></li>
+  </ol> 
+</div>
+   
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+    var idx=0;
+
+$('ol li').click(function()
+{
+    
+    $('.banner ul li').animate({'opacity': 0});
+
+    idx=$(this).index();
+    
+    $('.banner ul li').eq(idx).animate({'opacity': 1});
+
+    $('.banner ul li').eq(idx).addClass('cur').siblings().removeClass('cur');
+
+    $(this).addClass('cur').siblings().removeClass('cur');
+    
+   
+
+});
+</script>
+</body>
+</html>
