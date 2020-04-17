@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    *{
+       margin:0px;
+       padding:0px;
+    }
+    .carousel{
+        width: 1200px;
+        height: 500px;
+        margin:40px auto;
+        border: 1px solid black;
+        background-origin: padding-box;
+        position:relative;
+    }
+    .carousel ul{
+        list-style: none;
+    }
+    .carousel ul li{
+        position:absolute;
+        background: url(images/gundongtu.png);
+        background-size:100% 100%;
+        bottom:0;
+        transition:all 1s ease 0s;
+        opacity:0
+    }
+    .carousel ul li.no0{
+        width: 70px;
+        height: 148px;
+        margin-left:-70px;
+        left:0%;
+        
+        
+     
+    }
+
+    .carousel ul li.no1{
+        width: 120px;
+        height: 239px;
+        left:10%;
+        margin-left: -60px;
+        opacity: 1;
+    }
+  
+    .carousel ul li.no2{
+        width: 170px;
+        height: 345px;
+        left:25%;
+        margin-left: -85px;
+        opacity: 1;
+    }
+    .carousel ul li.no3{
+        width: 220px;
+        height: 458px;
+        left:50%;
+        margin-left: -110px;
+        opacity: 1;
+    }
+    .carousel ul li.no4{
+        width: 170px;
+        height: 345px;
+        left:75%;
+        margin-left: -85px;
+        opacity: 1;
+    }
+    .carousel ul li.no5{
+        width: 120px;
+        height: 239px;
+        left:90%;
+        margin-left: -60px;
+        opacity: 1;
+    }
+    .carousel ul li.no6{
+        width: 70px;
+        height: 148px;
+        left: 100%;
+        margin-left:70px;
+    }
+
+</style>
+</head>
+<body>
+    <div class="carousel" id="carousel" >
+        <ul>
+        <li class="no0">1</li>
+        <li class="no1">2</li>
+        <li class="no2">3</li>
+        <li class="no3">4</li>
+        <li class="no4">5</li>
+        <li class="no5">6</li>
+        <li class="no6">7</li>
+        <li class=>8</li>
+        <li class=>9</li>
+        <li class=>10</li>
+        <li class=>11</li>
+        <li class=>12</li>
+        <li class=>13</li>
+        <li class=>14</li>
+    </ul>
+    <button id="btn1">按我</button>
+    <button id="btn2">按我</button>
+    </div>
+
+ 
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        var arr=['no0','no1','no2','no3','no4','no5','no6','','','','','','',''];
+        var $lis=$('#carousel li');
+
+       var lock =true;
+      $('#btn2').click(function()
+      { 
+          if(!lock)reture;
+          lock =false;
+          setTimeout(function(){
+          lock =true;},300
+          );
+        arr.push(arr.shift());
+       
+      for(var i =0; i<14;i++){
+          $lis.eq(i).attr('class',arr[i]);
+
+      }  
+      });
+      $('#btn1').click(function()
+      { 
+          if(!lock)reture;
+          lock =false;
+          setTimeout(function(){
+          lock =true;},300
+          );
+        arr.unshift(arr.pop());
+       
+      for(var i =0; i<14;i++){
+          $lis.eq(i).attr('class',arr[i]);
+
+      }  
+      });
+    </script>
+</body>
+</html>
